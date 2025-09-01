@@ -11,12 +11,9 @@ from launch.actions import (
 )
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-from launch_ros.descriptions import ComposableNode
-from launch.conditions import IfCondition
-from launch_ros.actions import Node, SetRemap, ComposableNodeContainer
+from launch_ros.actions import Node, SetRemap
 from launch.event_handlers import OnProcessExit
 import xacro, yaml
-
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -25,7 +22,6 @@ def generate_launch_description():
     pkg_path = get_package_share_directory(package_name)
     robots_file_path = os.path.join(pkg_path, 'config', 'robots.yaml')
 
-    # Загрузка данных из YAML файла
     with open(robots_file_path, 'r') as file:
         yaml_data = yaml.safe_load(file)
 
@@ -35,51 +31,17 @@ def generate_launch_description():
     declare_use_sim_time = DeclareLaunchArgument(
         name='use_sim_time',
         default_value='true',
-        description='Использовать симуляционное время'
+        description='Use simulation time'
     )
 
-    enable_rviz = LaunchConfiguration('enable_rviz', default='true')
-    declare_enable_rviz = DeclareLaunchArgument(
-        name='enable_rviz', default_value=enable_rviz, description='Enable rviz launch'
-    )
-
-    ld.add_action(declare_enable_rviz)
     ld.add_action(declare_use_sim_time)
 
-    remappings_initial = [
+    remappings=[
         ("/tf", "tf"),
         ("/tf_static", "tf_static"),
         ("/scan", "scan"),
         ("/odom", "odometry/filtered")
     ]
-    
-    map_server = Node(package='nav2_map_server',
-                      executable='map_server',
-                      name='map_server',
-                      output='screen',
-                      parameters=[{'yaml_filename': os.path.join(pkg_path, 'maps', 'cambridge.yaml'),
-                                   }, ],
-                      remappings=remappings_initial)
-
-    map_server_lifecycle = Node(package='nav2_lifecycle_manager',
-                                executable='lifecycle_manager',
-                                name='lifecycle_manager_map_server',
-                                output='screen',
-                                parameters=[{'use_sim_time': use_sim_time},
-                                            {'autostart': True},
-                                            {'node_names': ['map_server']}])
-
-    # ld.add_action(map_server)
-    # ld.add_action(map_server_lifecycle)
-
-
-    remappings=[
-            ("/tf", "tf"),
-            ("/tf_static", "tf_static"),
-            ("/scan", "scan"),
-            ("/odom", "odometry/filtered")
-        ]
-    
 
     bridge_params = os.path.join(pkg_path,'config','gz_bridge.yaml')
     ros_gz_bridge_clock = Node(
@@ -91,15 +53,14 @@ def generate_launch_description():
             f'config_file:={bridge_params}',
         ]
     )
-    ld.add_action(ros_gz_bridge_clock)   
+    ld.add_action(ros_gz_bridge_clock)
 
-    
     last_action = None
 
     for i, robot in enumerate(robots):
         namespace = robot['name']
         robot_name = robot['name']
-        xacro_file = os.path.join(os.path.join(get_package_share_directory('go2_description')), 'xacro', 'robot.xacro') ## CHANGE ME!!!!
+        xacro_file = os.path.join(get_package_share_directory('go2_description'), 'xacro', 'robot.xacro')
         robot_desc = xacro.process_file(xacro_file, mappings={'robot_name': robot_name}).toxml()
         params_robot_state_publisher = {'robot_description': robot_desc, 'use_sim_time': use_sim_time}
 
@@ -123,7 +84,6 @@ def generate_launch_description():
                 '-x', robot['x_pose'],
                 '-y', robot['y_pose'],
                 '-z', robot['z_pose'],
-                # '-Y', robot['Y_pose']
             ],
             output='screen'
         )
@@ -142,7 +102,6 @@ def generate_launch_description():
                 f'/{namespace}/color/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
                 f'/{namespace}/color/image_raw@sensor_msgs/msg/Image@gz.msgs.Image',
                 f'/{namespace}/color/image_rect@sensor_msgs/msg/Image@gz.msgs.Image',
-                # f'/{namespace}/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock'
             ]
         )
         start_gazebo_ros_image_bridge_cmd = Node(
@@ -152,7 +111,6 @@ def generate_launch_description():
             arguments=['color/image_raw', 'color/image_rect'],
             output='screen',
         )
-
 
         joint_state_broadcaster = Node(
             package='controller_manager',
@@ -183,17 +141,6 @@ def generate_launch_description():
             remappings=remappings
         )
 
-        # apriltag_launch_file = os.path.join(get_package_share_directory('yahboom_rosmaster_docking'), 'launch', 'apriltag_dock_pose_publisher.launch.py')
-        # aprilTag = IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource(apriltag_launch_file),
-        #     launch_arguments={
-        #         'camera_namespace': namespace,
-        #         'camera_frame_type': 'camera_face'
-        #     }.items()
-        # )
-
-
-
         odom = Node(
             package='quadropted_controller',
             executable='QuadrupedOdometryNode.py',
@@ -215,55 +162,6 @@ def generate_launch_description():
             remappings=remappings
         )
 
-        nav2_launch_file = os.path.join(pkg_path, 'launch', 'nav2', 'bringup_launch.py')
-        map_yaml_file = os.path.join(pkg_path, 'maps', 'cafe_world_map.yaml')
-        params_file = os.path.join(pkg_path, 'config', 'nav2_params.yaml')
-
-        message = f"{{header: {{frame_id: map}}, pose: {{pose: {{position: {{x: {robot['x_pose']}, y: {robot['y_pose']}, z: 0.1}}, orientation: {{x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}}, }} }}"
-
-        initial_pose_cmd = ExecuteProcess(
-            cmd=[
-                'ros2', 'topic', 'pub', '-t', '3', '--qos-reliability', 'reliable',
-                f'/{namespace}/initialpose',
-                'geometry_msgs/PoseWithCovarianceStamped', message
-            ],
-            output='screen'
-        )
-
-        bringup_cmd = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(nav2_launch_file),
-            launch_arguments={
-                'map': map_yaml_file,
-                'use_namespace': 'True',
-                'namespace': namespace,
-                'params_file': params_file,  
-                'autostart': 'true',
-                'use_sim_time': 'true',
-                'log_level': 'warn',
-                'map_server': 'True'
-            }.items()
-        )
-
-        nav2_actions = GroupAction([
-            SetRemap(src="/tf", dst="tf"),
-            SetRemap(src="/tf_static", dst="tf_static"),
-            bringup_cmd,
-            initial_pose_cmd,
-        ])
-
-        rviz_launch_file = os.path.join(pkg_path, 'launch', 'rviz_launch.py')
-        #rviz_config_file = os.path.join(pkg_path, 'rviz', 'nav2_default_view.rviz')
-
-        rviz = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(rviz_launch_file),
-            launch_arguments={
-                "namespace": namespace,
-                "use_namespace": 'true',
-                #"rviz_config": rviz_config_file,
-            }.items(),
-            condition=IfCondition(enable_rviz)
-        )
-
         cmd_vel_pub = Node(
             package='quadropted_controller',
             executable='cmd_vel_pub.py',
@@ -281,8 +179,8 @@ def generate_launch_description():
             ],
             output='log'
         )
+
         robot_localization_file_path = os.path.join(pkg_path, 'config', 'ekf.yaml')
-        # Start robot localization using an Extended Kalman filter
         start_robot_localization_cmd = Node(
             package='robot_localization',
             executable='ekf_node',
@@ -293,7 +191,6 @@ def generate_launch_description():
             {'use_sim_time': use_sim_time}],
             remappings=remappings)
 
-
         robot_control = GroupAction([
             SetRemap(src="/tf", dst="tf"),
             SetRemap(src="/tf_static", dst="tf_static"),
@@ -303,28 +200,16 @@ def generate_launch_description():
             cmd_vel_pub,
             odom,
             start_robot_localization_cmd,
-            # aprilTag,
             fake_bms,
         ])
-        test_action = Node(
-            package='gazebo_sim',
-            executable='test_action.py',
-            namespace=namespace,
-            name='test_action',
-            output='screen',
-            remappings=remappings
-        )
 
-        # Группировка всех действий для робота
+        # No nav2_actions, no RViz for Nav2
         robot_group = GroupAction([
             node_robot_state_publisher,
             spawn_entity,
             ros_gz_bridge,
             start_gazebo_ros_image_bridge_cmd,
             robot_control,
-            #nav2_actions,
-            rviz,
-            # test_action
         ])
 
         if last_action is None:
