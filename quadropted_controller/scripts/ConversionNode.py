@@ -20,22 +20,12 @@ class ConversionNode(Node):
     def __init__(self):
         super().__init__('conversion_node')
 
-        #for debugging
-        self.declare_parameter('verbose', False)
-        self.verbose = self.get_parameter('verbose').get_parameter_value().bool_value
-        if self.verbose:
-            self.get_logger().info(f"Verbose mode: {self.verbose}")
-
         # basic parameters taken form QuadrupedOdometryNode.py
         self.declare_parameter('publish_rate', 50)
         publish_rate = self.get_parameter('publish_rate').get_parameter_value().integer_value
-        if self.verbose:
-            self.get_logger().info(f"Publish rate: {publish_rate} Hz")
 
         self.declare_parameter('clock_topic', '/clock')
         clock_topic = self.get_parameter('clock_topic').get_parameter_value().string_value
-        if self.verbose:
-            self.get_logger().info(f"Clock Topic: {clock_topic}")
 
         # QoS Profiles from QuadrupedOdometryNode.py
         qos_reliable = QoSProfile(
@@ -170,9 +160,6 @@ def publish_high_cmd(self):
 
     # Publish the updated high_cmd_msg
     self.nav2_uni.publish(self.high_cmd_msg)
-
-    if self.verbose:
-        self.get_logger().info(f"Published HighCmd: pos=({self.high_cmd_msg.position}), vel=({self.high_cmd_msg.velocity}), yaw_rate={self.high_cmd_msg.yaw_speed}")
 
 def main(args=None):
     rclpy.init(args=args)
