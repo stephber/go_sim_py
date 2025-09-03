@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>vifware_unitree_go1_driver</name>
+  <version>0.0.0</version>
+  <description>vifware robodog driver</description>
+  <maintainer email="franz.rammerstorfer@v2c2.at">Franz Rammerstorfer</maintainer>
+  <license>VIF</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <depend>rclcpp</depend>
+  <depend>vifware_vehicle_interfaces</depend>
+  <depend>vifware_unitree_go1_msgs</depend>
+  <depend>vifware_unitree_go1_bridge</depend>
+  <depend>ros2_unitree_legged_msgs</depend>
+  <depend>vifware_vehicle_interface_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

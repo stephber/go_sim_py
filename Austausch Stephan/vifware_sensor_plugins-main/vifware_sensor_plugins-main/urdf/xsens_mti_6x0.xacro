@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="IMU_xsens_mti6x0">
+    <!-- Xsens Parameters from Datasheet-->
+    <xacro:property name="xsens_height" value="0.013"/>
+    <xacro:property name="xsens_wide" value="0.0315"/>
+    <xacro:property name="xsens_width" value="0.028"/>
+    <xacro:property name="xsens_mass" value="0.098"/>
+
+    <xacro:macro name="IMU_xsens_mti6x0" params="*origin name:=imu parent:=base_link">
+        <link name="${name}">
+            <inertial>
+                <mass value="${xsens_mass}"/>
+                <origin xyz="0 0 0" rpy="0 0 0 "/>
+                <inertia ixx="0.000241148" ixy="0" ixz="0"
+                         iyy="0.000241148" iyz="0" izz="0.000264"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="file://$(find vifware_sensor_plugins)/meshes/xsens_mti_6x0.dae"
+                          scale="0.001 0.001 0.001"/>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="${name}_mount_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}"/>
+        </joint>
+
+    </xacro:macro>
+</robot>

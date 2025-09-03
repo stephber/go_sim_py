@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>vifware_vehicle_interfaces</name>
+  <version>0.0.0</version>
+  <description>collection of components for vehicle interface</description>
+  <maintainer email="franz.rammerstorfer@v2c2.at">Franz Rammerstorfer</maintainer>
+  <license>Proprietary</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- This is a meta package, hence list subpackages as dependencies -->
+  <depend>autoware_interface</depend>
+  <depend>longitudinal_control</depend>
+  <depend>omnidrive_controller</depend>
+  <depend>vifware_vehicle_interface_common</depend>
+  <depend>vifware_vehicle_interface_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -15,6 +15,7 @@
     <xacro:include filename="$(find go1_description)/xacro/depthCamera.xacro"/>
     <xacro:include filename="$(find go1_description)/xacro/ultraSound.xacro"/>
     <!-- <xacro:include filename="$(find go1_description)/launch/stairs.urdf.xacro"/> -->
+    <xacro:include filename="$(find go1_description)/xacro/robosense_airy_lidar.xacro"/>     <!-- Included Robosense Airy Lidar xacro file -->
     <xacro:robot_gazebo_sensors robot_name="$(arg robot_name)"/>
 
 
@@ -169,5 +170,8 @@
         <origin rpy="0 0 0" xyz="0.2747 0.0 -0.0088"/>
     </xacro:ultraSound>
 
-
+     <xacro:Lidar_Robosense_Airy name="robosense_airy_lidar">                                       <!-- Added Robosense Airy Lidar macro call -->
+        <origin rpy="0 0 0" xyz="${lidar_x_offset} ${lidar_y_offset} ${lidar_z_offset}"/>
+        <parent>trunk</parent>
+    </xacro:Lidar_Robosense_Airy>
 </robot>

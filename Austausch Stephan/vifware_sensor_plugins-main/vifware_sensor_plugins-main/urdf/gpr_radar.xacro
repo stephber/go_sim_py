@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--Ground Penetrating Radar-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="GPR_Radar">
+  
+  <xacro:property name="sensor_length" value="0.25" />
+  <xacro:property name="sensor_height" value="0.16" />
+  <xacro:property name="sensor_width" value="0.25" />
+  <xacro:property name="sensor_mass" value="3.0" />
+
+  <xacro:property name="antenna_length" value="0.05" />
+  <xacro:property name="antenna_height" value="0.64" />
+  <xacro:property name="antenna_width" value="0.43" />
+  <xacro:property name="antenna_mass" value="5.0" />
+
+  <xacro:macro name="GPR_Radar" params="*origin parent:=base_link name:=gpr_radar">
+      <!-- GPR Radar -->
+      <link name="${name}">
+          <inertial>
+              <mass value="${sensor_mass}"/>
+              <origin xyz="0 0 0" rpy="0 0 0 "/>
+              <inertia ixx="0.000241148" ixy="0" ixz="0"
+                        iyy="0.000241148" iyz="0" izz="0.000264"/>
+          </inertial>
+          <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                  <box size="${sensor_width} ${sensor_length} ${sensor_height}"/>
+              </geometry>
+              <material name="LightGrey"/>
+          </visual>
+      </link>
+
+    <joint name="${name}_mount_joint" type="fixed">
+        <xacro:insert_block name="origin" />
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+    </joint>
+
+    <!-- GPR Left Antenna -->
+    <link name="${name}_left_antenna">
+          <inertial>
+              <mass value="${antenna_mass}"/>
+              <origin xyz="0 0 0" rpy="0 0 0 "/>
+              <inertia ixx="0.000241148" ixy="0" ixz="0"
+                        iyy="0.000241148" iyz="0" izz="0.000264"/>
+          </inertial>
+          <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                  <box size="${antenna_width} ${antenna_length} ${antenna_height}"/>
+              </geometry>
+              <material name="Green"/>
+          </visual>
+      </link>
+
+    <joint name="${name}_left_antenna_mount_joint" type="fixed">
+        <origin xyz="-0.40 0.225 -0.10" rpy="0 0 0"/>
+        <parent link="${name}"/>
+        <child link="${name}_left_antenna"/>
+    </joint>
+
+    <!-- GPR Right Antenna -->
+    <link name="${name}_right_antenna">
+          <inertial>
+              <mass value="${antenna_mass}"/>
+              <origin xyz="0 0 0" rpy="0 0 0 "/>
+              <inertia ixx="0.000241148" ixy="0" ixz="0"
+                        iyy="0.000241148" iyz="0" izz="0.000264"/>
+          </inertial>
+          <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                  <box size="${antenna_width} ${antenna_length} ${antenna_height}"/>
+              </geometry>
+              <material name="Green"/>
+          </visual>
+      </link>
+
+    <joint name="${name}_right_antenna_mount_joint" type="fixed">
+        <origin xyz="-0.40 -0.225 -0.10" rpy="0 0 0"/>
+        <parent link="${name}"/>
+        <child link="${name}_right_antenna"/>
+    </joint>
+
+  </xacro:macro>
+</robot>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Radar_Continental_ARS548">
+    <!-- ARS548 Parameters from Datasheet-->
+    <xacro:property name="sensor_length" value="0.137" />
+    <xacro:property name="sensor_height" value="0.039" />
+    <xacro:property name="sensor_width" value="0.090" />
+    <xacro:property name="sensor_mass" value="0.526" />
+
+    <xacro:macro name="Radar_Continental_ARS548" params="*origin parent:=base_link name:=ars548">
+        <link name="${name}">
+            <inertial>
+                <mass value="${sensor_mass}"/>
+                <origin xyz="0 0 0" rpy="0 0 0 "/>
+                <inertia ixx="0.000241148" ixy="0" ixz="0"
+                         iyy="0.000241148" iyz="0" izz="0.000264"/>
+            </inertial>
+            <!-- TODO The origin should be rotated instead of exchanging the height, length, and width values -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${sensor_height} ${sensor_length} ${sensor_width}"/>
+                </geometry>
+                <material name="DarkGrey">
+                    <color rgba="0.1 0.1 0.1 1"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="${name}_mount_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}"/>
+        </joint>
+
+    </xacro:macro>
+</robot>

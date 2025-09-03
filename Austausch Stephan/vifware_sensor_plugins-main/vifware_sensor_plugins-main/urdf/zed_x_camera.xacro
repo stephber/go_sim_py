@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Camera_ZED_X">
+    <!--  From Datasheet: https://cdn.sanity.io/files/s18ewfw4/staging/ec78a504b36ab95d6620ac720ffa5feaa2e8948b.pdf/ZED%20X%20Datasheet%20v1.2.pdf-->
+    <xacro:property name="camera_sensor_height" value="0.0318" />
+    <xacro:property name="camera_sensor_width" value="0.0367" />
+    <xacro:property name="camera_sensor_depth" value="0.1634" />
+    <xacro:property name="camera_sensor_mass" value="0.239" />
+
+    <xacro:macro name="Camera_ZED_X" params="*origin name:=camera_depth parent:=base_link material:=Grey">
+        <link name="${name}">
+            <inertial>
+                <mass value="${camera_sensor_mass}"/>
+                <origin xyz="0 0 0" rpy="0 0 0 "/>
+                <inertia ixx="0.000241148" ixy="0" ixz="0"
+                         iyy="0.000241148" iyz="0" izz="0.000264"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+                <geometry>
+                    <mesh filename="file://$(find vifware_sensor_plugins)/meshes/zed_x_camera.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+                <material name="Grey">
+                    <color rgba="0.1 0.1 0.1 1"/>
+                </material>                            
+            </visual>
+        </link>
+
+        <joint name="${name}_mount_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}"/>
+        </joint>
+
+    </xacro:macro>
+</robot>

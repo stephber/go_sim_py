@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Define properties for reusability -->
+    <xacro:property name="imu_mass" value="0.065"/>
+    <xacro:property name="imu_size_x" value="0.047"/>
+    <xacro:property name="imu_size_y" value="0.047"/>
+    <xacro:property name="imu_size_z" value="0.032"/>
+    <xacro:property name="imu_inertia_ixx" value="0.0000175"/>
+    <xacro:property name="imu_inertia_iyy" value="0.0000175"/>
+    <xacro:property name="imu_inertia_izz" value="0.0000239"/>
+
+    <gazebo>
+        <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+    </gazebo>
+
+    <link name="imu_frame">
+        <visual>
+            <origin xyz="0 0 0" rpy="3.14159 0 1.57075"/>
+            <geometry>
+                <mesh filename="file://$(find vifware_sensor_plugins)/meshes/sbg_ellipse_d.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.016" rpy="0 0 0"/> 
+            <geometry>
+                <box size="${imu_size_x} ${imu_size_y} ${imu_size_z}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0.016" rpy="0 0 0"/> 
+            <mass value="${imu_mass}"/>
+            <inertia ixx="${imu_inertia_ixx}" ixy="0" ixz="0"
+                     iyy="${imu_inertia_iyy}" iyz="0" izz="${imu_inertia_izz}"/>
+        </inertial>
+    </link>
+
+    <gazebo reference="imu_frame">
+        <sensor name="imu_frame" type="imu">
+            <always_on>true</always_on>
+            <update_rate>100</update_rate>
+            <visualize>true</visualize>
+            <topic>imu</topic>
+            <imu>          
+                <!-- Noise for angular velocity -->
+                <angular_velocity>
+                    <x>
+                        <noise type="gaussian">
+                            <mean>0.0</mean>
+                            <stddev>0.001</stddev> <!-- Adjust this for desired noise -->
+                        </noise>
+                    </x>
+                    <y>
+                        <noise type="gaussian">
+                            <mean>0.0</mean>
+                            <stddev>0.001</stddev> <!-- Adjust this for desired noise -->
+                        </noise>
+                    </y>
+                    <z>
+                        <noise type="gaussian">
+                            <mean>0.0</mean>
+                            <stddev>0.001</stddev> <!-- Adjust this for desired noise -->
+                        </noise>
+                    </z>
+                </angular_velocity>
+                <!-- Noise for linear acceleration -->
+                <linear_acceleration>
+                    <x>
+                        <noise type="gaussian">
+                            <mean>0.0</mean>
+                            <stddev>0.02</stddev> <!-- Adjust this for desired noise -->
+                        </noise>
+                    </x>
+                    <y>
+                        <noise type="gaussian">
+                            <mean>0.0</mean>
+                            <stddev>0.02</stddev> <!-- Adjust this for desired noise -->
+                        </noise>
+                    </y>
+                    <z>
+                        <noise type="gaussian">
+                            <mean>0.0</mean>
+                            <stddev>0.02</stddev> <!-- Adjust this for desired noise -->
+                        </noise>
+                    </z>
+                </linear_acceleration>
+            </imu>
+        </sensor>
+    </gazebo>
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="chasis_link"/>
+        <child link="imu_frame"/>
+        <origin xyz="0.0 0.0 -0.01" rpy="0 0 0"/>
+    </joint>
+
+</robot>

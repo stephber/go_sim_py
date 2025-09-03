@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Pmd_Flexx_2">
+  
+  <xacro:property name="sensor_length" value="0.018" />
+  <xacro:property name="sensor_height" value="0.071" />
+  <xacro:property name="sensor_width" value="0.011" />
+  <xacro:property name="sensor_mass" value="0.015" />
+
+  <xacro:macro name="Pmd_Flexx_2" params="*origin parent:=base_link name:=pmf_flexx2">
+      <link name="${name}">
+          <inertial>
+              <mass value="${sensor_mass}"/>
+              <origin xyz="0 0 0" rpy="0 0 0 "/>
+              <inertia ixx="0.000241148" ixy="0" ixz="0"
+                        iyy="0.000241148" iyz="0" izz="0.000264"/>
+          </inertial>
+          <visual>
+              <origin xyz="-0.035 0.0 -0.002" rpy="${M_PI} 0 0"/>
+              <geometry>
+                 <mesh filename="file://$(find vifware_sensor_plugins)/meshes/pmd_flexx2.stl" scale="0.001 0.001 0.001"/>
+              </geometry>
+              <material name="DarkGrey"/>   
+          </visual>
+      </link>
+
+      <joint name="${name}_mount_joint" type="fixed">
+          <xacro:insert_block name="origin" />
+          <parent link="${parent}"/>
+          <child link="${name}"/>
+      </joint>
+
+  </xacro:macro>
+</robot>

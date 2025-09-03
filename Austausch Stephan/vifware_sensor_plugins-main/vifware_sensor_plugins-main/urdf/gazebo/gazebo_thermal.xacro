@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<robot name="gazebo_thermal" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="gazebo_thermal" params="suffix
+                                            calibration_parent:=sensor_kit_base_link">
+
+    <!-- Create local variables -->
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="camera_name" value="camera_${suffix}"/>
+    <xacro:property name="parent" value="${calibration_parent}"/>
+
+    <!-- Sensor Gazebo Camera -->
+    <!-- Note: Using dict.get('key', 'default-value') to use a default-value in case the key in the dict is missing -->
+    <!-- Note2: Gazebo-camera-plugin is only loaded if "simulate" in the yaml-configuration is set to true -->
+    <xacro:if value="${calibration['sensor_kit_base_link'][camera_name]['simulate']}">
+      <xacro:property name="frequency"
+                      value="${calibration[parent][camera_name].get('publish_frequency', 15.0)}"/>
+      <xacro:property name="resolution_width"
+                      value="${calibration[parent][camera_name].get('resolution_width', 320)}"/>
+      <xacro:property name="resolution_height"
+                      value="${calibration[parent][camera_name].get('resolution_height', 180)}"/>
+      <xacro:property name="gz_topic_image_raw"
+                      value="${calibration[parent][camera_name].get('topic_image_raw', '/sensing/'+camera_name+'/image_raw')}"/>
+      <xacro:property name="topic_camera_info"
+                      value="${calibration[parent][camera_name].get('topic_camera_info', '/sensing/'+camera_name+'/camera_info')}"/>
+
+      <!-- Create a frame for the camera base with x-forward, y-left and z-up for the Gazebo-camera-plugin -->
+      <link name="${camera_name}_optical" />
+      <joint name="${camera_name}_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+        <parent link="${camera_name}"/>
+        <child link="${camera_name}_optical"/>
+      </joint>
+
+      <gazebo reference="${camera_name}">
+        <!-- This is from https://gazebosim.org/api/sensors/7/thermalcameraigngazebo.html -->
+        <sensor name="${camera_name}" type="thermal">
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>${resolution_width}</width>
+              <height>${resolution_height}</height>
+              <format>L8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>${frequency}</update_rate>
+          <visualize>true</visualize>
+          <topic>${gz_topic_image_raw}</topic>
+          <plugin
+                  filename="gz-sim-thermal-sensor-system"
+                  name="gz::sim::systems::ThermalSensor">
+            <min_temp>253.15</min_temp>
+            <max_temp>673.15</max_temp>
+            <resolution>3.0</resolution>
+          </plugin>
+        </sensor>
+      </gazebo>
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>

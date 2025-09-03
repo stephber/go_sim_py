@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<robot name="gazebo_imu" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="gazebo_imu" params="suffix
+                                            calibration_parent:=sensor_kit_base_link">
+
+    <xacro:property name="imu_name" value="imu_${suffix}"/>
+    <xacro:property name="parent" value="${calibration_parent}"/>
+
+    <!-- Sensor Gazebo Camera -->
+    <!-- Note: Using dict.get('key', 'default-value') to use a default-value in case the key in the dict is missing -->
+    <!-- Note2: Gazebo-camera-plugin is only loaded if "simulate" in the yaml-configuration is set to true -->
+    <xacro:if value="${calibration[parent][imu_name]['simulate']}">
+      <xacro:property name="frequency"
+                      value="${calibration[parent][imu_name].get('frequency', 100.0)}"/>
+      <xacro:property name="gz_topic"
+                      value="${calibration[parent][imu_name].get('gz_topic', '/sensing/'+imu_name+'/imu/raw')}"/>
+      <xacro:property name="noise_stddev"
+                      value="${calibration[parent][imu_name].get('noise_stddev', 0.0)}"/>
+
+      <!-- Sensor IMU -->
+      <gazebo reference="${imu_name}">
+        <gravity>true</gravity>
+        <sensor name="${imu_name}" type="imu">
+          <always_on>true</always_on>
+          <update_rate>${frequency}</update_rate>
+          <visualize>true</visualize>
+          <topic>${gz_topic}</topic>
+          <pose>0 0 0 0 0 0</pose>
+        </sensor>
+      </gazebo>
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>

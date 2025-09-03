@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+<!-- created with Phobos 0.7 -->
+<robot name="vehicle" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- Include Ouster-URDF macro -->
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/ouster_os0.xacro"/> 
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/ouster_os1.xacro"/> 
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/ouster_os2.xacro"/> 
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/tieriv_c1_camera.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/tieriv_c2_camera.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/flir_adk.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/xsens_mti_6x0.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/ublox_f9p.xacro"/>
+
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/gazebo/gazebo_camera.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/gazebo/gazebo_ouster.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/gazebo/gazebo_thermal.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/gazebo/gazebo_imu.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/gazebo/gazebo_gnss.xacro"/>
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/gazebo/gazebo_lidar_robosense.xacro"/>
+
+
+  <!-- Include Sensor Calibration -->
+  <xacro:property name="calibration" value="${xacro.load_yaml('$(find vifware_ford_fusion_sensor_kit_description)/config/sensor_kit_calibration.yaml')}"/>
+
+  <!-- Sensor Kit Base Link -->
+  <link name="sensor_kit_base_link" />
+  <joint name="sensor_kit_base_link_joint" type="fixed">
+      <origin xyz="${calibration['sensor_kit_base_link']['x']} 
+               ${calibration['sensor_kit_base_link']['y']} 
+               ${calibration['sensor_kit_base_link']['z']}" 
+          rpy="${calibration['sensor_kit_base_link']['roll']} 
+               ${calibration['sensor_kit_base_link']['pitch']} 
+               ${calibration['sensor_kit_base_link']['yaw']}"/>
+      <parent link="base_link"/>
+      <child link="sensor_kit_base_link"/>
+  </joint>
+
+  <!-- Sensor Mount REAR AXIS -->
+  <link name="sensor_mount_rear_axis" />
+  <joint name="sensor_mount_rear_axis_joint" type="fixed">
+      <origin xyz="${calibration['sensor_mount_rear_axis']['x']} 
+               ${calibration['sensor_mount_rear_axis']['y']} 
+               ${calibration['sensor_mount_rear_axis']['z']}" 
+          rpy="${calibration['sensor_mount_rear_axis']['roll']} 
+               ${calibration['sensor_mount_rear_axis']['pitch']} 
+               ${calibration['sensor_mount_rear_axis']['yaw']}"/>
+      <parent link="base_link"/>
+      <child link="sensor_mount_rear_axis"/>
+  </joint>
+
+  <!-- Sensor Mount FRONT -->
+  <link name="sensor_mount_front" />
+  <joint name="sensor_mount_front_joint" type="fixed">
+      <origin xyz="${calibration['sensor_mount_front']['x']} 
+               ${calibration['sensor_mount_front']['y']} 
+               ${calibration['sensor_mount_front']['z']}" 
+          rpy="${calibration['sensor_mount_front']['roll']} 
+               ${calibration['sensor_mount_front']['pitch']} 
+               ${calibration['sensor_mount_front']['yaw']}"/>
+      <parent link="base_link"/>
+      <child link="sensor_mount_front"/>
+  </joint>
+
+  <!-- Sensor Kit Base Link -->
+  <xacro:property name="calibration_parent" value="sensor_kit_base_link" />
+
+  <!-- IMU -->
+  <xacro:include filename="$(find vifware_sensor_plugins)/urdf/xsens_mti_6x0.xacro"/>
+  <xacro:property name="suffix" value="link" />
+  <xacro:property name="imu_name" value="imu_${suffix}" />
+  <xacro:IMU_xsens_mti6x0 name="${imu_name}"
+                 parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][imu_name]['x']}
+                     ${calibration[calibration_parent][imu_name]['y']}
+                     ${calibration[calibration_parent][imu_name]['z']}"
+                rpy="${calibration[calibration_parent][imu_name]['roll']}
+                     ${calibration[calibration_parent][imu_name]['pitch']}
+                     ${calibration[calibration_parent][imu_name]['yaw']}" />
+  </xacro:IMU_xsens_mti6x0>
+  <xacro:gazebo_imu suffix="${suffix}" calibration_parent="${calibration_parent}"/>
+
+  <!-- GNSS link -->
+  <xacro:property name="gnss_name" value="gnss" />
+  <!-- ublox Antenna -->
+  <xacro:GNSS_ublox_f9p name="gnss" parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent]['gnss']['x']}
+                     ${calibration[calibration_parent]['gnss']['y']}
+                     ${calibration[calibration_parent]['gnss']['z']}"
+                rpy="${calibration[calibration_parent]['gnss']['roll']}
+                     ${calibration[calibration_parent]['gnss']['pitch']}
+                     ${calibration[calibration_parent]['gnss']['yaw']}" />
+  </xacro:GNSS_ublox_f9p>
+  <xacro:gazebo_gnss name="${gnss_name}"/>
+
+
+  <link name="gnss_base_link"/>
+  <joint name="gnss_base_link_joint" type="fixed">
+        <origin xyz="${calibration[calibration_parent]['gnss']['x']}
+                     ${calibration[calibration_parent]['gnss']['y']}
+                     ${calibration[calibration_parent]['gnss']['z']}"
+                rpy="${calibration[calibration_parent]['gnss']['roll']}
+                     ${calibration[calibration_parent]['gnss']['pitch']}
+                     ${calibration[calibration_parent]['gnss']['yaw']}" />
+    <parent link="sensor_kit_base_link" />
+    <child link="gnss_base_link" />
+  </joint>
+
+  <!-- Lidar TOP -->
+  <xacro:property name="suffix" value="top" />
+  <xacro:property name="lidar_name" value="lidar_${suffix}" />
+  <!-- URDF definition -->
+  <xacro:Lidar_Ouster_OS2 name="lidar_top"
+                          parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][lidar_name+'/os_sensor']['x']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['y']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['z']}"
+                rpy="${calibration[calibration_parent][lidar_name+'/os_sensor']['roll']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['pitch']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['yaw']}" />
+  </xacro:Lidar_Ouster_OS2>
+  <!-- Gazebo configuration -->
+  <xacro:gazebo_ouster lidar_suffix="${suffix}" calibration_parent="${calibration_parent}"/>
+
+
+
+  <!-- Lidar FRONT -->
+  <xacro:property name="suffix" value="front" />
+  <xacro:property name="lidar_name" value="lidar_${suffix}" />
+  <!-- URDF definition -->
+  <xacro:Lidar_Ouster_OS1 name="${lidar_name}"
+                          parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][lidar_name+'/os_sensor']['x']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['y']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['z']}"
+                rpy="${calibration[calibration_parent][lidar_name+'/os_sensor']['roll']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['pitch']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['yaw']}" />
+  </xacro:Lidar_Ouster_OS1>
+  <!-- Gazebo configuration -->
+  <xacro:gazebo_ouster lidar_suffix="${suffix}" calibration_parent="${calibration_parent}"/>
+
+
+  <!-- Lidar MIDDLE LEFT -->
+  <xacro:property name="suffix" value="left" />
+  <xacro:property name="lidar_name" value="lidar_${suffix}" />
+  <!-- URDF definition -->
+  <xacro:Lidar_Ouster_OS1 name="${lidar_name}"
+                          parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][lidar_name+'/os_sensor']['x']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['y']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['z']}"
+                rpy="${calibration[calibration_parent][lidar_name+'/os_sensor']['roll']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['pitch']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['yaw']}" />
+  </xacro:Lidar_Ouster_OS1>
+  <!-- Gazebo configuration -->
+  <xacro:gazebo_ouster lidar_suffix="${suffix}" calibration_parent="${calibration_parent}"/>
+
+  <!-- Lidar MIDDLE RIGHT -->
+  <xacro:property name="suffix" value="right" />
+  <xacro:property name="lidar_name" value="lidar_${suffix}" />
+  <!-- URDF definition -->
+  <xacro:Lidar_Ouster_OS1 name="${lidar_name}"
+                          parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][lidar_name+'/os_sensor']['x']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['y']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['z']}"
+                rpy="${calibration[calibration_parent][lidar_name+'/os_sensor']['roll']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['pitch']}
+                     ${calibration[calibration_parent][lidar_name+'/os_sensor']['yaw']}" />
+  </xacro:Lidar_Ouster_OS1>
+  <!-- Gazebo configuration -->
+  <xacro:gazebo_ouster lidar_suffix="${suffix}" calibration_parent="${calibration_parent}"/>
+
+  <!-- Camera definitions -->
+  <!-- Camera Front -->
+  <xacro:property name="suffix" value="front" />
+  <xacro:property name="camera_name" value="camera_${suffix}" />
+  <xacro:Camera_TierIV_C1 name="${camera_name}"
+                        parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][camera_name]['x']}
+                     ${calibration[calibration_parent][camera_name]['y']}
+                     ${calibration[calibration_parent][camera_name]['z']}"
+                rpy="${calibration[calibration_parent][camera_name]['roll']}
+                     ${calibration[calibration_parent][camera_name]['pitch']}
+                     ${calibration[calibration_parent][camera_name]['yaw']}" />
+  </xacro:Camera_TierIV_C1>
+  <xacro:gazebo_camera suffix="${suffix}"/>
+
+  <!-- Camera Front Right -->
+  <xacro:property name="suffix" value="front_right" />
+  <xacro:property name="camera_name" value="camera_${suffix}" />
+  <xacro:Camera_TierIV_C1 name="${camera_name}"
+                        parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][camera_name]['x']}
+                     ${calibration[calibration_parent][camera_name]['y']}
+                     ${calibration[calibration_parent][camera_name]['z']}"
+                rpy="${calibration[calibration_parent][camera_name]['roll']}
+                     ${calibration[calibration_parent][camera_name]['pitch']}
+                     ${calibration[calibration_parent][camera_name]['yaw']}" />
+  </xacro:Camera_TierIV_C1>
+  <xacro:gazebo_camera suffix="${suffix}"/>
+ 
+  <!-- Camera Front Left -->
+  <xacro:property name="suffix" value="front_left" />
+  <xacro:property name="camera_name" value="camera_${suffix}" />
+  <xacro:Camera_TierIV_C1 name="${camera_name}"
+                        parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][camera_name]['x']}
+                     ${calibration[calibration_parent][camera_name]['y']}
+                     ${calibration[calibration_parent][camera_name]['z']}"
+                rpy="${calibration[calibration_parent][camera_name]['roll']}
+                     ${calibration[calibration_parent][camera_name]['pitch']}
+                     ${calibration[calibration_parent][camera_name]['yaw']}" />
+  </xacro:Camera_TierIV_C1>
+  <xacro:gazebo_camera suffix="${suffix}"/>
+
+  <!-- Camera Rear -->
+  <xacro:property name="suffix" value="rear" />
+  <xacro:property name="camera_name" value="camera_${suffix}" />
+  <xacro:Camera_TierIV_C1 name="${camera_name}"
+                        parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][camera_name]['x']}
+                     ${calibration[calibration_parent][camera_name]['y']}
+                     ${calibration[calibration_parent][camera_name]['z']}"
+                rpy="${calibration[calibration_parent][camera_name]['roll']}
+                     ${calibration[calibration_parent][camera_name]['pitch']}
+                     ${calibration[calibration_parent][camera_name]['yaw']}" />
+  </xacro:Camera_TierIV_C1>
+  <xacro:gazebo_camera suffix="${suffix}"/>
+
+  <!-- Camera Rear Right -->
+  <xacro:property name="suffix" value="rear_right" />
+  <xacro:property name="camera_name" value="camera_${suffix}" />
+  <xacro:Camera_TierIV_C1 name="${camera_name}"
+                        parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][camera_name]['x']}
+                     ${calibration[calibration_parent][camera_name]['y']}
+                     ${calibration[calibration_parent][camera_name]['z']}"
+                rpy="${calibration[calibration_parent][camera_name]['roll']}
+                     ${calibration[calibration_parent][camera_name]['pitch']}
+                     ${calibration[calibration_parent][camera_name]['yaw']}" />
+  </xacro:Camera_TierIV_C1>
+  <xacro:gazebo_camera suffix="${suffix}"/>
+ 
+   <!-- Camera Rear Left -->
+  <xacro:property name="suffix" value="rear_left" />
+  <xacro:property name="camera_name" value="camera_${suffix}" />
+  <xacro:Camera_TierIV_C1 name="${camera_name}"
+                        parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][camera_name]['x']}
+                     ${calibration[calibration_parent][camera_name]['y']}
+                     ${calibration[calibration_parent][camera_name]['z']}"
+                rpy="${calibration[calibration_parent][camera_name]['roll']}
+                     ${calibration[calibration_parent][camera_name]['pitch']}
+                     ${calibration[calibration_parent][camera_name]['yaw']}" />
+  </xacro:Camera_TierIV_C1>
+  <xacro:gazebo_camera suffix="${suffix}"/>
+
+  <!-- Camera Thermal -->
+  <xacro:property name="suffix" value="thermal" />
+  <xacro:property name="camera_name" value="camera_${suffix}" />
+  <xacro:Thermal_Camera_Flir_ADK name="camera_thermal"
+                         parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent][camera_name]['x']}
+                     ${calibration[calibration_parent][camera_name]['y']}
+                     ${calibration[calibration_parent][camera_name]['z']}"
+                rpy="${calibration[calibration_parent][camera_name]['roll']}
+                     ${calibration[calibration_parent][camera_name]['pitch']}
+                     ${calibration[calibration_parent][camera_name]['yaw']}" />
+  </xacro:Thermal_Camera_Flir_ADK>
+  <xacro:gazebo_thermal suffix="${suffix}"/>
+
+
+
+
+
+  <!-- Radar WAVEYE -->
+  <link name="imaging_radar1"/>
+  <joint name="imaging_radar1_joint" type="fixed">
+    <origin xyz="3.75 0 0.0" rpy="3.141 0.0 0.0" />
+    <parent link="base_link" />
+    <child link="imaging_radar1" />
+  </joint>
+  
+  <!-- Radar LRR FRONT ARS548 -->
+  <link name="lrr_front_ars548"/>
+  <joint name="lrr_front_ars548_joint" type="fixed">
+    <origin xyz="3.74 0.23 0.305" rpy="0.0 0.0 0.0" />
+    <parent link="sensor_mount_rear_axis" />
+    <child link="lrr_front_ars548" />
+  </joint>
+
+  <!-- Radar LRR FRONT UMRR11 -->
+  <link name="lrr_front_umrr11"/>
+  <joint name="lrr_front_umrr11_joint" type="fixed">
+    <origin xyz="3.74 -0.25 0.295" rpy="0.0 0.0 0.0" />
+    <parent link="sensor_mount_rear_axis" />
+    <child link="lrr_front_umrr11" />
+  </joint>
+
+  <!-- Radar LRR REAR UMRR11 -->
+  <link name="lrr_rear_umrr11"/>
+  <joint name="lrr_rear_umrr11_joint" type="fixed">
+    <origin xyz="-1.05 0.0 0.30" rpy="0.0 0.0 3.14" />
+    <parent link="sensor_mount_rear_axis" />
+    <child link="lrr_rear_umrr11" />
+  </joint>
+
+  <!-- Radar SRR FRONT LEFT-->
+  <link name="srr_front_left"/>
+  <joint name="srr_front_left_joint" type="fixed">
+    <origin xyz="3.465 0.78 0.27" rpy="0.0 0.0 1.15" />
+    <parent link="sensor_mount_rear_axis" />
+    <child link="srr_front_left" />
+  </joint>
+
+  <!-- Radar SRR FRONT RIGHT-->
+  <link name="srr_front_right"/>
+  <joint name="srr_front_right_joint" type="fixed">
+    <origin xyz="3.465 -0.78 0.27" rpy="0.0 0.0 -1.15" /> <!-- unten weiter weg -->
+    <parent link="sensor_mount_rear_axis" />
+    <child link="srr_front_right" />
+  </joint>
+
+  <!-- Radar SRR REAR LEFT-->
+  <link name="srr_rear_left"/>
+  <joint name="srr_rear_left_joint" type="fixed">
+    <origin xyz="-0.515 0.86 0.205" rpy="0.0 0.0 1.82" /> <!-- unten weiter weg -->
+    <parent link="sensor_mount_rear_axis" />
+    <child link="srr_rear_left" />
+  </joint>
+
+  <!-- Radar SRR REAR RIGHT-->
+  <link name="srr_rear_right"/>
+  <joint name="srr_rear_right_joint" type="fixed">
+    <origin xyz="-0.515 -0.86 0.205" rpy="0.0 0.0 -1.82" /> <!-- unten weiter weg -->
+    <parent link="sensor_mount_rear_axis" />
+    <child link="srr_rear_right" />
+  </joint>
+
+  <!-- Radar LRR FRONT ARS548 -->
+  <link name="lrr_front_ars408"/>
+  <joint name="lrr_front_ars408_joint" type="fixed">
+    <origin xyz="0.0 0.25 0.295" rpy="0.0 0.0 0.0" />
+    <parent link="sensor_mount_front" />
+    <child link="lrr_front_ars408" />
+  </joint>
+
+
+
+  <!-- Sensor Mount Rear Axis -->
+  <xacro:property name="calibration_parent" value="sensor_mount_rear_axis" />
+
+  <!-- GNSS Left -->
+  <!--xacro:property name="gnss_name" value="gnss_left" />
+  <xacro:GNSS_ublox_f9p name="gnss" parent="sensor_kit_base_link">
+        <origin xyz="${calibration[calibration_parent]['gnss_left']['x']}
+                     ${calibration[calibration_parent]['gnss_left']['y']}
+                     ${calibration[calibration_parent]['gnss_left']['z']}"
+                rpy="${calibration[calibration_parent]['gnss_left']['roll']}
+                     ${calibration[calibration_parent]['gnss_left']['pitch']}
+                     ${calibration[calibration_parent]['gnss_left']['yaw']}" />
+  </xacro:GNSS_ublox_f9p>
+  <xacro:gazebo_gnss name="${gnss_name}"/-->
+
+
+
+  <!-- GNSS Right -->
+  <!--link name="gnss_right"/>
+  <joint name="gnss_right_joint" type="fixed">
+    <origin xyz="${calibration['sensor_mount_rear_axis']['gnss_right']['x']} 
+                 ${calibration['sensor_mount_rear_axis']['gnss_right']['y']} 
+                 ${calibration['sensor_mount_rear_axis']['gnss_right']['z']}" 
+            rpy="${calibration['sensor_mount_rear_axis']['gnss_right']['roll']} 
+                 ${calibration['sensor_mount_rear_axis']['gnss_right']['pitch']} 
+                 ${calibration['sensor_mount_rear_axis']['gnss_right']['yaw']}" /> 
+    <parent link="sensor_mount_rear_axis" />
+    <child link="gnss_right" />
+  </joint-->
+
+
+  <!-- Time-of-Flight Camera Driver -->
+  <link name="camera_driver_tof_optical_frame"/>
+  <joint name="camera_driver_tof_optical_frame_joint" type="fixed">
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    <parent link="camera_driver_tof" />
+    <child link="camera_driver_tof_optical_frame" />
+  </joint>
+
+  <link name="camera_driver_tof"/>
+  <joint name="camera_driver_tof_joint" type="fixed">
+    <origin xyz="1.8 0.25 1.3" rpy="-2.1 -0.0 1.20" />
+    <parent link="base_link" />
+    <child link="camera_driver_tof" />
+  </joint>
+
+
+
+</robot>
+

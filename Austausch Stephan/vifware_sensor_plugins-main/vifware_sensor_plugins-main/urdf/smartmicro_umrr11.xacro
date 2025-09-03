@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Radar_Smartmicro_UMRR11">
+    <!-- UMRR11 Parameters from Datasheet-->
+    <xacro:property name="umrr11_sensor_height" value="0.0947" />
+    <xacro:property name="umrr11_sensor_width" value="0.0844" />
+    <xacro:property name="umrr11_sensor_depth" value="0.0264" />
+    <xacro:property name="umrr11_sensor_mass" value="0.274" />
+
+    <xacro:macro name="Radar_Smartmicro_UMRR11" params="*origin parent:=base_link name:=lrr_front_umrr11 material:=DarkGrey">
+        <link name="${name}">
+            <inertial>
+                <mass value="${umrr11_sensor_mass}"/>
+                <origin xyz="0 0 0" rpy="0 0 0 "/>
+                <inertia ixx="0.000241148" ixy="0" ixz="0"
+                         iyy="0.000241148" iyz="0" izz="0.000264"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${umrr11_sensor_depth} ${umrr11_sensor_width} ${umrr11_sensor_height}"/>
+                </geometry>
+                <material name="${material}"/>
+            </visual>
+        </link>
+
+        <joint name="${name}_mount_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}"/>
+        </joint>
+
+    </xacro:macro>
+</robot>

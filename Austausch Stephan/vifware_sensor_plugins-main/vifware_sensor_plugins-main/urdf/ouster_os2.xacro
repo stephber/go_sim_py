@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Lidar_Ouster_OS2">
+    <xacro:property name="M_PI" value="3.14159" />
+    <xacro:property name="lidar_mass" value="0.33" />
+    <xacro:property name="lidar_height" value="0.1029" />
+    <xacro:property name="lidar_radius" value="0.0598" />
+
+    <xacro:macro name="Lidar_Ouster_OS2" params="*origin name:=os2_sensor
+                                                       parent:=base_link">
+        <link name="${name}/os_sensor">
+            <inertial>
+                <mass value="${lidar_mass}"/>
+                <origin xyz="0 0 0.0365" rpy="0 0 0"/>
+                <inertia ixx="0.000241148" ixy="0" ixz="0"
+                         iyy="0.000241148" iyz="0" izz="0.000264"/>
+            </inertial>
+            <collision name="base_collision">
+                <origin xyz="0 0 0.0365" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder length="${lidar_height}" radius="${lidar_radius}"/>
+                </geometry>
+            </collision>
+            <visual name="base_visual">
+                <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+                <geometry>
+                    <mesh filename="file://$(find vifware_sensor_plugins)/meshes/ouster_os2.dae"
+                          scale="0.001 0.001 0.001"/>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="${name}_mount_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}/os_sensor"/>
+        </joint>
+
+        <link name="${name}/os_imu" />
+
+        <joint name="${name}_imu_link_joint" type="fixed">
+            <parent link="${name}/os_sensor" />
+            <child link="${name}/os_imu" />
+            <origin xyz="0.006253 -0.011775 0.007645" rpy="0 0 0" />
+        </joint>
+
+        <link name="${name}/os_lidar" />
+
+        <joint name="${name}_lidar_link_joint" type="fixed">
+            <parent link="${name}/os_sensor" />
+            <child link="${name}/os_lidar" />
+            <origin xyz="0.0 0.0 0.03618" rpy="0 0 ${-M_PI}" />
+        </joint>
+
+    </xacro:macro>
+</robot>

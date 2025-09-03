@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>longitudinal_control</name>
+  <version>0.0.0</version>
+  <description>component for longitudinal control</description>
+  <maintainer email="franz.rammerstorfer@v2c2.at">Franz Rammerstorfer</maintainer>
+  <license>Proprietary</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
+  <depend>vifware_vehicle_interface_msgs</depend>
+  <depend>vifware_vehicle_interface_common</depend>
+  <depend>iceoryx_hoofs</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

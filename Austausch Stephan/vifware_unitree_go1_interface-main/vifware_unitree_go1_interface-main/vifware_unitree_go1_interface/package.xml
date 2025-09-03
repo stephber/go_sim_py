@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>vifware_unitree_go1_interface</name>
+  <version>0.0.0</version>
+  <description>vifware robodog interface</description>
+  <maintainer email="franz.rammerstorfer@v2c2.at">Franz Rammerstorfer</maintainer>
+  <license>VIF</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>vifware_unitree_go1_driver</depend>
+  <depend>vifware_unitree_go1_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

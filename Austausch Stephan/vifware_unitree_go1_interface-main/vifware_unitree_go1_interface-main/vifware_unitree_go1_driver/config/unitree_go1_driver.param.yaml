@@ -1,0 +1,5 @@
+/**:
+  unitree_go1_driver:
+    ros__parameters:
+      loop_rate_hz: 50.0
+      wheelbase: 0.5

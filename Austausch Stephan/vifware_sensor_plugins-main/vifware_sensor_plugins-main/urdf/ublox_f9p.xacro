@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="GNSS_ublox_f9p">
+    <!--  ublox antenna parameters from Datasheet-->
+    <!-- https://content.u-blox.com/sites/default/files/ANN-MB1_DataSheet_UBX-21005551.pdf-->
+    <xacro:property name="gnss_sensor_mass" value="0.164" />
+
+    <xacro:macro name="GNSS_ublox_f9p" params="*origin parent:=base_link name:=gnss">
+        <link name="${name}">
+            <inertial>
+                <mass value="${gnss_sensor_mass}"/>
+                <origin xyz="0 0 0" rpy="0 0 0 "/>
+                <inertia ixx="0.000241148" ixy="0" ixz="0"
+                         iyy="0.000241148" iyz="0" izz="0.000264"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="file://$(find vifware_sensor_plugins)/meshes/ublox_ann-mb2.stl" scale="0.0005 0.0005 0.0005"/>
+                </geometry>
+                <material name="Black">
+                    <color rgba="0.0 0.0 0.0 1"/>
+                </material>            
+            </visual>
+
+        </link>
+
+        <joint name="${name}_mount_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}"/>
+        </joint>
+
+    </xacro:macro>
+</robot>
+
+
+
