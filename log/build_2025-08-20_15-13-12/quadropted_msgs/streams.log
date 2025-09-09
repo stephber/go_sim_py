@@ -1,0 +1,33 @@
+[0.013s] Invoking command in '/home/stephber/go_sim/src/build/quadropted_msgs': /usr/bin/cmake /home/stephber/go_sim/src/quadropted_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_msgs
+[0.149s] -- The C compiler identification is GNU 11.4.0
+[0.230s] -- The CXX compiler identification is GNU 11.4.0
+[0.238s] -- Detecting C compiler ABI info
+[0.286s] -- Detecting C compiler ABI info - done
+[0.290s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.290s] -- Detecting C compile features
+[0.291s] -- Detecting C compile features - done
+[0.294s] -- Detecting CXX compiler ABI info
+[0.338s] -- Detecting CXX compiler ABI info - done
+[0.342s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.342s] -- Detecting CXX compile features
+[0.342s] -- Detecting CXX compile features - done
+[0.351s] [31mCMake Error at CMakeLists.txt:9 (find_package):
+[0.351s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[0.351s]   has asked CMake to find a package configuration file provided by
+[0.351s]   "ament_cmake", but CMake did not find one.
+[0.352s] 
+[0.352s]   Could not find a package configuration file provided by "ament_cmake" with
+[0.352s]   any of the following names:
+[0.352s] 
+[0.352s]     ament_cmakeConfig.cmake
+[0.352s]     ament_cmake-config.cmake
+[0.352s] 
+[0.352s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[0.352s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[0.352s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[0.352s]   has been installed.
+[0.352s] 
+[0.352s] [0m
+[0.354s] -- Configuring incomplete, errors occurred!
+[0.354s] See also "/home/stephber/go_sim/src/build/quadropted_msgs/CMakeFiles/CMakeOutput.log".
+[0.357s] Invoked command in '/home/stephber/go_sim/src/build/quadropted_msgs' returned '1': /usr/bin/cmake /home/stephber/go_sim/src/quadropted_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_msgs

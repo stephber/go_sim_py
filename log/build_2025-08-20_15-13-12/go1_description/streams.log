@@ -1,0 +1,33 @@
+[0.010s] Invoking command in '/home/stephber/go_sim/src/build/go1_description': /usr/bin/cmake /home/stephber/go_sim/src/go1_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/go1_description
+[0.153s] -- The C compiler identification is GNU 11.4.0
+[0.234s] -- The CXX compiler identification is GNU 11.4.0
+[0.242s] -- Detecting C compiler ABI info
+[0.290s] -- Detecting C compiler ABI info - done
+[0.294s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.294s] -- Detecting C compile features
+[0.295s] -- Detecting C compile features - done
+[0.298s] -- Detecting CXX compiler ABI info
+[0.342s] -- Detecting CXX compiler ABI info - done
+[0.346s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.346s] -- Detecting CXX compile features
+[0.347s] -- Detecting CXX compile features - done
+[0.354s] [31mCMake Error at CMakeLists.txt:9 (find_package):
+[0.355s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[0.355s]   has asked CMake to find a package configuration file provided by
+[0.355s]   "ament_cmake", but CMake did not find one.
+[0.355s] 
+[0.355s]   Could not find a package configuration file provided by "ament_cmake" with
+[0.355s]   any of the following names:
+[0.355s] 
+[0.355s]     ament_cmakeConfig.cmake
+[0.355s]     ament_cmake-config.cmake
+[0.355s] 
+[0.355s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[0.355s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[0.355s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[0.355s]   has been installed.
+[0.355s] 
+[0.355s] [0m
+[0.355s] -- Configuring incomplete, errors occurred!
+[0.355s] See also "/home/stephber/go_sim/src/build/go1_description/CMakeFiles/CMakeOutput.log".
+[0.363s] Invoked command in '/home/stephber/go_sim/src/build/go1_description' returned '1': /usr/bin/cmake /home/stephber/go_sim/src/go1_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/go1_description

@@ -1,7 +1,7 @@
 ARG BASE_IMG
 FROM ${BASE_IMG}
 
-# Кэширование apt-get
+# Cache apt-get
 RUN  --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
   apt-get update && apt-get install -y \
@@ -41,6 +41,7 @@ RUN  --mount=type=cache,target=/var/cache/apt,sharing=locked \
   ros-jazzy-nav2-simple-commander \
   ros-jazzy-tf2-ros \
   ros-jazzy-tf2 \
+  ros-jazzy-velodyne-description \
   tmux \
   tmuxinator \
   python3-colcon-common-extensions \
@@ -48,25 +49,27 @@ RUN  --mount=type=cache,target=/var/cache/apt,sharing=locked \
   ros-jazzy-topic-tools \
   python3 python3-pip
 
-# Установка colcon-cache
+# Install colcon-cache
 RUN pip3 install --break-system-packages git+https://github.com/ruffsl/colcon-cache.git
 
-# Копируем исходный код
+# Clone velodyne_simulator before copying your own code
+WORKDIR /root/ws/src
+RUN git clone https://github.com/ros-drivers/velodyne.git
+
+# Copy your project sources
 COPY ../ /root/ws/src
 
 WORKDIR /root/ws
-
 SHELL ["/bin/bash", "-c"]
 
-# Сборка пакетов
+# Build packages (including velodyne_simulator)
 RUN --mount=type=cache,target=/root/.ccache \
   . /ros_entrypoint.sh && \
   colcon cache lock && \
   ccache colcon build --symlink-install \
   --mixin ccache
 
-# Настройка entrypoint
+# Configure entrypoint
 RUN sed -i '/exec "\$@"/i umask 002' /ros_entrypoint.sh
 ENV WORKSPACE_DIR=/root/ws
 RUN sed -i '/exec "\$@"/i source "$WORKSPACE_DIR/install/setup.bash"' /ros_entrypoint.sh
-

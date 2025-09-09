@@ -1,0 +1,2 @@
+Invoking command in '/home/stephber/go_sim/src/build/gazebo_sim': /usr/bin/cmake /home/stephber/go_sim/src/gazebo_sim -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/gazebo_sim
+Invoked command in '/home/stephber/go_sim/src/build/gazebo_sim' returned '1': /usr/bin/cmake /home/stephber/go_sim/src/gazebo_sim -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/gazebo_sim

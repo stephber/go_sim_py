@@ -1,0 +1,2 @@
+Invoking command in '/home/stephber/go_sim/src/build/go1_description': /usr/bin/cmake /home/stephber/go_sim/src/go1_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/go1_description
+Invoked command in '/home/stephber/go_sim/src/build/go1_description' returned '1': /usr/bin/cmake /home/stephber/go_sim/src/go1_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/go1_description

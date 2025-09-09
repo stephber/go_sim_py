@@ -1,0 +1,190 @@
+[0.000000] (-) TimerEvent: {}
+[0.000618] (gazebo_sim) JobQueued: {'identifier': 'gazebo_sim', 'dependencies': OrderedDict()}
+[0.000638] (go1_description) JobQueued: {'identifier': 'go1_description', 'dependencies': OrderedDict()}
+[0.000645] (go2_description) JobQueued: {'identifier': 'go2_description', 'dependencies': OrderedDict()}
+[0.000651] (quadropted_controller) JobQueued: {'identifier': 'quadropted_controller', 'dependencies': OrderedDict()}
+[0.000657] (quadropted_msgs) JobQueued: {'identifier': 'quadropted_msgs', 'dependencies': OrderedDict()}
+[0.000666] (gazebo_sim) JobStarted: {'identifier': 'gazebo_sim'}
+[0.005317] (go1_description) JobStarted: {'identifier': 'go1_description'}
+[0.006914] (go2_description) JobStarted: {'identifier': 'go2_description'}
+[0.008613] (quadropted_controller) JobStarted: {'identifier': 'quadropted_controller'}
+[0.009488] (quadropted_msgs) JobStarted: {'identifier': 'quadropted_msgs'}
+[0.010944] (gazebo_sim) JobProgress: {'identifier': 'gazebo_sim', 'progress': 'cmake'}
+[0.011609] (gazebo_sim) Command: {'cmd': ['/usr/bin/cmake', '/home/stephber/go_sim/src/gazebo_sim', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/gazebo_sim'], 'cwd': '/home/stephber/go_sim/src/build/gazebo_sim', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'stephber'), ('SHLVL', '1'), ('HOME', '/home/stephber'), ('OLDPWD', '/home/stephber/go_sim/src/docker'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'stephber'), ('NAME', 'fcggpc0386'), ('WSL_INTEROP', '/run/WSL/4717_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('TERM', 'xterm-256color'), ('PATH', '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/stephber/go_sim/src/build/gazebo_sim'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', '')]), 'shell': False}
+[0.013571] (go1_description) JobProgress: {'identifier': 'go1_description', 'progress': 'cmake'}
+[0.014114] (go1_description) Command: {'cmd': ['/usr/bin/cmake', '/home/stephber/go_sim/src/go1_description', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/go1_description'], 'cwd': '/home/stephber/go_sim/src/build/go1_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'stephber'), ('SHLVL', '1'), ('HOME', '/home/stephber'), ('OLDPWD', '/home/stephber/go_sim/src/docker'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'stephber'), ('NAME', 'fcggpc0386'), ('WSL_INTEROP', '/run/WSL/4717_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('TERM', 'xterm-256color'), ('PATH', '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/stephber/go_sim/src/build/go1_description'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', '')]), 'shell': False}
+[0.015189] (go2_description) JobProgress: {'identifier': 'go2_description', 'progress': 'cmake'}
+[0.015705] (go2_description) Command: {'cmd': ['/usr/bin/cmake', '/home/stephber/go_sim/src/go2_description', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/go2_description'], 'cwd': '/home/stephber/go_sim/src/build/go2_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'stephber'), ('SHLVL', '1'), ('HOME', '/home/stephber'), ('OLDPWD', '/home/stephber/go_sim/src/docker'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'stephber'), ('NAME', 'fcggpc0386'), ('WSL_INTEROP', '/run/WSL/4717_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('TERM', 'xterm-256color'), ('PATH', '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/stephber/go_sim/src/build/go2_description'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', '')]), 'shell': False}
+[0.016557] (quadropted_controller) JobProgress: {'identifier': 'quadropted_controller', 'progress': 'cmake'}
+[0.017211] (quadropted_controller) Command: {'cmd': ['/usr/bin/cmake', '/home/stephber/go_sim/src/quadropted_controller', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_controller'], 'cwd': '/home/stephber/go_sim/src/build/quadropted_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'stephber'), ('SHLVL', '1'), ('HOME', '/home/stephber'), ('OLDPWD', '/home/stephber/go_sim/src/docker'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'stephber'), ('NAME', 'fcggpc0386'), ('WSL_INTEROP', '/run/WSL/4717_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('TERM', 'xterm-256color'), ('PATH', '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/stephber/go_sim/src/build/quadropted_controller'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', '')]), 'shell': False}
+[0.020594] (quadropted_msgs) JobProgress: {'identifier': 'quadropted_msgs', 'progress': 'cmake'}
+[0.021239] (quadropted_msgs) Command: {'cmd': ['/usr/bin/cmake', '/home/stephber/go_sim/src/quadropted_msgs', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_msgs'], 'cwd': '/home/stephber/go_sim/src/build/quadropted_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'stephber'), ('SHLVL', '1'), ('HOME', '/home/stephber'), ('OLDPWD', '/home/stephber/go_sim/src/docker'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('LOGNAME', 'stephber'), ('NAME', 'fcggpc0386'), ('WSL_INTEROP', '/run/WSL/4717_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('TERM', 'xterm-256color'), ('PATH', '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/stephber/go_sim/src/build/quadropted_msgs'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', '')]), 'shell': False}
+[0.099890] (-) TimerEvent: {}
+[0.158433] (go1_description) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.158829] (quadropted_msgs) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.159001] (go2_description) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.159052] (quadropted_controller) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.159085] (gazebo_sim) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.199979] (-) TimerEvent: {}
+[0.239201] (go2_description) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.239318] (quadropted_msgs) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.239359] (go1_description) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.239392] (gazebo_sim) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.239739] (quadropted_controller) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.247002] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.247123] (quadropted_controller) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.247206] (go2_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.247282] (go1_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.247397] (gazebo_sim) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.295353] (go2_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.295507] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.295547] (go1_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.295576] (quadropted_controller) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.297249] (gazebo_sim) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.298981] (go1_description) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.299051] (quadropted_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.299217] (go2_description) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.299281] (quadropted_controller) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.299477] (quadropted_controller) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.299581] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.299747] (go1_description) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.299792] (go2_description) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.300001] (go1_description) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.300133] (-) TimerEvent: {}
+[0.300282] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.300338] (quadropted_controller) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.300364] (go2_description) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.301922] (gazebo_sim) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.302116] (gazebo_sim) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.302412] (go2_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.302941] (gazebo_sim) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.302999] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.303027] (quadropted_controller) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.303053] (go1_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.303966] (gazebo_sim) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.347383] (quadropted_controller) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.347561] (go1_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.347601] (gazebo_sim) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.347631] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.347766] (go2_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.351153] (quadropted_controller) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.351279] (go1_description) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.351387] (quadropted_controller) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.351507] (go1_description) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.351582] (quadropted_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.351844] (gazebo_sim) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.351898] (quadropted_controller) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.351923] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.351946] (quadropted_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.351967] (gazebo_sim) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.351988] (gazebo_sim) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.352008] (go1_description) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.353574] (go2_description) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.353725] (go2_description) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.354015] (go2_description) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.358722] (go2_description) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:4 (find_package):\n'}
+[0.358854] (go2_description) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[0.358887] (go2_description) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[0.358909] (go2_description) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[0.358930] (go2_description) StderrLine: {'line': b'\n'}
+[0.358950] (go2_description) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[0.358970] (go2_description) StderrLine: {'line': b'  any of the following names:\n'}
+[0.358988] (go2_description) StderrLine: {'line': b'\n'}
+[0.359007] (go2_description) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[0.359026] (go2_description) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[0.359045] (go2_description) StderrLine: {'line': b'\n'}
+[0.359063] (go2_description) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[0.359081] (go2_description) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[0.359099] (go2_description) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[0.359118] (go2_description) StderrLine: {'line': b'  has been installed.\n'}
+[0.359137] (go2_description) StderrLine: {'line': b'\n'}
+[0.359156] (go2_description) StderrLine: {'line': b'\x1b[0m\n'}
+[0.359174] (go2_description) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.359197] (go2_description) StdoutLine: {'line': b'See also "/home/stephber/go_sim/src/build/go2_description/CMakeFiles/CMakeOutput.log".\n'}
+[0.359511] (go1_description) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:9 (find_package):\n'}
+[0.359822] (go1_description) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[0.359862] (go1_description) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[0.359887] (go1_description) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[0.359910] (go1_description) StderrLine: {'line': b'\n'}
+[0.359932] (go1_description) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[0.359952] (go1_description) StderrLine: {'line': b'  any of the following names:\n'}
+[0.359972] (go1_description) StderrLine: {'line': b'\n'}
+[0.359990] (go1_description) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[0.360009] (go1_description) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[0.360028] (go1_description) StderrLine: {'line': b'\n'}
+[0.360047] (go1_description) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[0.360066] (go1_description) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[0.360088] (go1_description) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[0.360106] (go1_description) StderrLine: {'line': b'  has been installed.\n'}
+[0.360125] (go1_description) StderrLine: {'line': b'\n'}
+[0.360143] (go1_description) StderrLine: {'line': b'\x1b[0m\n'}
+[0.360162] (gazebo_sim) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:9 (find_package):\n'}
+[0.360193] (gazebo_sim) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[0.360212] (gazebo_sim) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[0.360230] (gazebo_sim) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[0.360250] (gazebo_sim) StderrLine: {'line': b'\n'}
+[0.360268] (gazebo_sim) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[0.360286] (gazebo_sim) StderrLine: {'line': b'  any of the following names:\n'}
+[0.360304] (gazebo_sim) StderrLine: {'line': b'\n'}
+[0.360322] (gazebo_sim) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[0.360341] (gazebo_sim) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[0.360359] (gazebo_sim) StderrLine: {'line': b'\n'}
+[0.360377] (gazebo_sim) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[0.360396] (gazebo_sim) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[0.360414] (gazebo_sim) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[0.360433] (gazebo_sim) StderrLine: {'line': b'  has been installed.\n'}
+[0.360451] (gazebo_sim) StderrLine: {'line': b'\n'}
+[0.360470] (go1_description) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.360538] (go1_description) StdoutLine: {'line': b'See also "/home/stephber/go_sim/src/build/go1_description/CMakeFiles/CMakeOutput.log".\n'}
+[0.360616] (quadropted_msgs) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:9 (find_package):\n'}
+[0.360756] (quadropted_msgs) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[0.360838] (quadropted_msgs) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[0.360914] (quadropted_msgs) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[0.360987] (quadropted_msgs) StderrLine: {'line': b'\n'}
+[0.361060] (quadropted_msgs) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[0.361136] (quadropted_msgs) StderrLine: {'line': b'  any of the following names:\n'}
+[0.361203] (quadropted_msgs) StderrLine: {'line': b'\n'}
+[0.361276] (quadropted_msgs) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[0.361356] (quadropted_msgs) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[0.361425] (quadropted_msgs) StderrLine: {'line': b'\n'}
+[0.361494] (quadropted_msgs) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[0.361564] (quadropted_msgs) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[0.361634] (quadropted_msgs) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[0.361704] (quadropted_msgs) StderrLine: {'line': b'  has been installed.\n'}
+[0.361773] (quadropted_msgs) StderrLine: {'line': b'\n'}
+[0.361842] (quadropted_msgs) StderrLine: {'line': b'\x1b[0m\n'}
+[0.361911] (gazebo_sim) StderrLine: {'line': b'\x1b[0m\n'}
+[0.361982] (gazebo_sim) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.362056] (gazebo_sim) StdoutLine: {'line': b'See also "/home/stephber/go_sim/src/build/gazebo_sim/CMakeFiles/CMakeOutput.log".\n'}
+[0.362127] (quadropted_controller) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:4 (find_package):\n'}
+[0.362209] (quadropted_controller) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[0.362279] (quadropted_controller) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[0.362349] (quadropted_controller) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[0.362443] (quadropted_controller) StderrLine: {'line': b'\n'}
+[0.362515] (quadropted_controller) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[0.362592] (quadropted_controller) StderrLine: {'line': b'  any of the following names:\n'}
+[0.362660] (quadropted_controller) StderrLine: {'line': b'\n'}
+[0.362731] (quadropted_controller) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[0.362801] (quadropted_controller) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[0.362869] (quadropted_controller) StderrLine: {'line': b'\n'}
+[0.362938] (quadropted_controller) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[0.363007] (quadropted_controller) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[0.363076] (quadropted_controller) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[0.363146] (quadropted_controller) StderrLine: {'line': b'  has been installed.\n'}
+[0.363215] (quadropted_controller) StderrLine: {'line': b'\n'}
+[0.363284] (quadropted_controller) StderrLine: {'line': b'\x1b[0m\n'}
+[0.363354] (quadropted_msgs) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.363428] (quadropted_msgs) StdoutLine: {'line': b'See also "/home/stephber/go_sim/src/build/quadropted_msgs/CMakeFiles/CMakeOutput.log".\n'}
+[0.363498] (quadropted_controller) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.363569] (quadropted_controller) StdoutLine: {'line': b'See also "/home/stephber/go_sim/src/build/quadropted_controller/CMakeFiles/CMakeOutput.log".\n'}
+[0.364999] (go2_description) CommandEnded: {'returncode': 1}
+[0.365916] (quadropted_controller) CommandEnded: {'returncode': 1}
+[0.366698] (quadropted_msgs) CommandEnded: {'returncode': 1}
+[0.367323] (gazebo_sim) CommandEnded: {'returncode': 1}
+[0.368053] (go1_description) CommandEnded: {'returncode': 1}
+[0.380555] (go2_description) JobEnded: {'identifier': 'go2_description', 'rc': 1}
+[0.381601] (quadropted_controller) JobEnded: {'identifier': 'quadropted_controller', 'rc': 'SIGINT'}
+[0.381735] (quadropted_msgs) JobEnded: {'identifier': 'quadropted_msgs', 'rc': 'SIGINT'}
+[0.381844] (gazebo_sim) JobEnded: {'identifier': 'gazebo_sim', 'rc': 'SIGINT'}
+[0.381948] (go1_description) JobEnded: {'identifier': 'go1_description', 'rc': 'SIGINT'}
+[0.391779] (-) EventReactorShutdown: {}

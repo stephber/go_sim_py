@@ -51,7 +51,7 @@
     <gazebo reference="velodyne">
         <sensor name="velodyne-VLP16" type="ray">
         <pose>0 0 0 0 0 0</pose>
-        <visualize>false</visualize>
+        <visualize>true</visualize>
         <update_rate>10</update_rate>
         <ray>
             <scan>

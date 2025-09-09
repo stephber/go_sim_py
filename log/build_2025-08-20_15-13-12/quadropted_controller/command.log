@@ -1,0 +1,2 @@
+Invoking command in '/home/stephber/go_sim/src/build/quadropted_controller': /usr/bin/cmake /home/stephber/go_sim/src/quadropted_controller -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_controller
+Invoked command in '/home/stephber/go_sim/src/build/quadropted_controller' returned '1': /usr/bin/cmake /home/stephber/go_sim/src/quadropted_controller -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_controller

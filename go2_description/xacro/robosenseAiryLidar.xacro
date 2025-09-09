@@ -1,0 +1,63 @@
+<xacro:macro name="robosenseAiryLidar" 
+             params="lidar_suffix calibration_parent:=sensor_kit_base_link calibration"
+             xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Create local variables -->
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="lidar_name" value="lidar_${lidar_suffix}"/>
+    <xacro:property name="parent" value="${calibration_parent}"/>
+
+    <!-- Sensor Gazebo Lidar -->
+    <!-- Note: Using dict.get('key', 'default-value') to use a default-value in case the key in the dict is missing -->
+    <!-- Note2: Gazebo-lidar-plugin is only loaded if "simulate" in the yaml-configuration is set to true -->
+    <xacro:if value="true">
+        <xacro:property name="lidar_range" value="30"/>
+        <xacro:property name="channels" value="96"/>
+        <xacro:property name="points_per_second" value="860000"/>
+        <xacro:property name="upper_fov" value="90"/>
+        <xacro:property name="lower_fov" value="0"/>
+        <xacro:property name="frequency" value="10"/>
+        <xacro:property name="noise_stddev" value="0.0"/>
+        <xacro:property name="gz_topic" value="/sensing/lidar/${lidar_suffix}"/>
+
+
+        <gazebo reference="${lidar_name}/robosense_airy_lidar">
+        <sensor type="gpu_lidar" name="${lidar_name}/robosense_airy_lidar">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>${frequency}</update_rate>
+            <topic>${gz_topic}</topic>
+            <ignition_frame_id>${lidar_name}/robosense_airy_lidar</ignition_frame_id>
+            <gazebo_frame_id>${lidar_name}/robosense_airy_lidar</gazebo_frame_id>
+            <frame_id>${lidar_name}/robosense_airy_lidar</frame_id>
+            <lidar>
+            <scan>
+                <vertical>
+                <samples>${channels}</samples>
+                <resolution>1</resolution>
+                <min_angle>${(lower_fov / 180.0) * M_PI}</min_angle>
+                <max_angle>${(upper_fov / 180.0) * M_PI}</max_angle>
+                </vertical>
+                <horizontal>
+                <samples>${points_per_second / channels / frequency}
+                </samples>
+                <resolution>1</resolution>
+                <min_angle>-${M_PI}</min_angle>
+                <max_angle>${M_PI}</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>0.2</min>
+                <max>${lidar_range}</max>
+                <resolution>0.03</resolution>
+            </range>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>${noise_stddev}</stddev>
+            </noise>
+            </lidar>
+        </sensor>
+        </gazebo>
+    </xacro:if>
+
+</xacro:macro>

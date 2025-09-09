@@ -1,0 +1,2 @@
+Invoking command in '/home/stephber/go_sim/src/build/quadropted_msgs': /usr/bin/cmake /home/stephber/go_sim/src/quadropted_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_msgs
+Invoked command in '/home/stephber/go_sim/src/build/quadropted_msgs' returned '1': /usr/bin/cmake /home/stephber/go_sim/src/quadropted_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/stephber/go_sim/src/install/quadropted_msgs
