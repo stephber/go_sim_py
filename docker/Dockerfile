@@ -53,8 +53,8 @@ RUN  --mount=type=cache,target=/var/cache/apt,sharing=locked \
 RUN pip3 install --break-system-packages git+https://github.com/ruffsl/colcon-cache.git
 
 # Clone velodyne_simulator before copying your own code
-WORKDIR /root/ws/src
-RUN git clone https://github.com/ros-drivers/velodyne.git
+# WORKDIR /root/ws/src
+# RUN git clone https://github.com/ros-drivers/velodyne.git
 
 # Copy your project sources
 COPY ../ /root/ws/src

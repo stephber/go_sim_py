@@ -43,6 +43,7 @@ def generate_launch_description():
     multi_nav2_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_path, 'launch', 'gazebo_multi_nav2_world.launch.py')
+            #os.path.join(pkg_path, 'launch', 'gazebo_multi_world.launch.py')
         )
     )
 
