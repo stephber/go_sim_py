@@ -8,11 +8,18 @@
     <xacro:include filename="$(find go2_description)/xacro/materials.xacro"/>
     <xacro:include filename="$(find go2_description)/xacro/leg.xacro"/>
     <!-- <xacro:include filename="$(find go2_description)/xacro/stairs.xacro"/> -->
-    <xacro:include filename="$(find go2_description)/xacro/gazebo.xacro"/>
     <!-- <xacro:include filename="$(find go2_description)/launch/stairs.urdf.xacro"/> -->
+    <xacro:include filename="$(find go2_description)/xacro/gazebo.xacro"/>
+    
     <xacro:robot_gazebo_sensors robot_name="$(arg robot_name)"/>
     
-
+    <xacro:include filename="$(find go2_description)/xacro/gazebo_ouster.xacro"/>   
+    <xacro:gazebo_ouster lidar_suffix="top" calibration_parent="sensor_kit_base_link" robot_name="$(arg robot_name)"/>
+    
+    <!--
+    <xacro:include filename="$(find go2_description)/xacro/gazebo_lidar_robosense.xacro"/>
+    <xacro:gazebo_lidar_robosense lidar_suffix="top" calibration_parent="sensor_kit_base_link" robot_name="$(arg robot_name)"/>
+    -->
     <!-- <xacro:stairs stairs="15" xpos="0" ypos="0" zpos="0" /> -->
 
     <!-- Rotor related joint and link is only for demonstrate location. -->
@@ -83,6 +90,8 @@
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
                 <cylinder length="0.01" radius="0.018" />
+                <!-- <mesh filename="file://$(find go2_description)/meshes/ouster_os2.dae" scale="0.001 0.001 0.001"/> -->   <!-- still a little to big and not rotated correctly but works-->
+                <!-- <mesh filename="file://$(find go2_description)/meshes/robosense_airy.dae" scale="1 1 1"/> -->  <!-- for some reason this file does not work -->
             </geometry>
             <!-- <material name="red"/> -->
         </visual>

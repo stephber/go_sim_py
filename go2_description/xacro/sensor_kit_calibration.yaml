@@ -1,0 +1,245 @@
+sensor_kit_base_link:
+  x: 1.5944
+  y: 0.0001
+  z: 1.6118
+  roll: 0.0
+  pitch: 0.0
+  yaw: -0.00
+  lidar_top/os_sensor:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    range: 50
+    channels: 64
+    points_per_second: 655360
+    upper_fov: 11.25
+    lower_fov: -11.25
+    rotation_frequency: 10
+    noise_stddev: 0.0    
+    type: "lidar"
+    simulate: true
+  lidar_front/os_sensor:
+    x: 2.1992
+    y: -0.0204
+    z: -1.2895
+    roll: 0.0206
+    pitch: 0.0161
+    yaw: 1.0641
+    range: 50
+    channels: 32
+    points_per_second: 163840
+    upper_fov: 45.0
+    lower_fov: -45.0
+    rotation_frequency: 10
+    noise_stddev: 0.0
+    type: "lidar"
+    simulate: true
+  lidar_left/os_sensor:
+    x: -1.0194
+    y: 0.5664
+    z: -0.0932
+    roll: -0.1274
+    pitch: 0.3929
+    yaw: 1.5055
+    range: 50
+    channels: 32
+    points_per_second: 163840
+    upper_fov: 45.0
+    lower_fov: -45.0
+    rotation_frequency: 10
+    noise_stddev: 0.0
+    type: "lidar"
+    simulate: true 
+  lidar_right/os_sensor:
+    x: -1.0081
+    y: -0.5525
+    z: -0.0953
+    roll: 0.1572
+    pitch: 0.3585
+    yaw: -1.4692
+    range: 50
+    channels: 32
+    points_per_second: 163840
+    upper_fov: 45.0
+    lower_fov: -45.0
+    rotation_frequency: 10
+    noise_stddev: 0.0
+    type: "lidar"
+    simulate: true  
+  camera_front:
+    x: 0.07
+    y: 0.0
+    z: -0.03
+    roll: -1.57
+    pitch: 0.0
+    yaw: -1.595
+    type: "camera"
+    frequency: 10    
+    resolution_width: 1920 #2880
+    resolution_height: 1280 #1860
+    simulate: true  
+  camera_front_left:
+    x: -0.015
+    y: 0.528
+    z: -0.120
+    roll: -1.527
+    pitch: 0.0
+    yaw: -0.384
+    type: "camera"
+    frequency: 10    
+    resolution_width: 1920 #2880
+    resolution_height: 1280 #1860
+    simulate: true        
+  camera_front_right:
+    x: -0.015
+    y: -0.523
+    z: -0.120
+    roll: -1.533
+    pitch: 0.0
+    yaw: -2.76
+    type: "camera"
+    frequency: 10    
+    resolution_width: 1920 #2880
+    resolution_height: 1280 #1860
+    simulate: true
+  camera_rear:
+    x: -1.258
+    y: 0.052
+    z: -0.157
+    roll: -1.571
+    pitch: 0.0
+    yaw: 1.57
+    type: "camera"
+    frequency: 10    
+    resolution_width: 1920 #2880
+    resolution_height: 1280 #1860
+    simulate: true     
+  camera_rear_left:
+    x: -1.20
+    y: 0.498
+    z: -0.150
+    roll: -1.571
+    pitch: 0.0
+    yaw: 0.523
+    type: "camera"
+    frequency: 10    
+    resolution_width: 1920 #2880
+    resolution_height: 1280 #1860
+    simulate: true         
+  camera_rear_right:
+    x: -1.20
+    y: -0.498
+    z: -0.150
+    roll: -1.571
+    pitch: 0.0
+    yaw: -3.665
+    type: "camera"
+    frequency: 10    
+    resolution_width: 1920 #2880
+    resolution_height: 1280 #1860
+    simulate: true
+  camera_thermal:
+    x: 0.05
+    y: 0.095
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    type: "thermal"
+    frequency: 20
+    resolution_width: 640
+    resolution_height: 512
+    simulate: true    
+  gnss:
+    x: -0.64
+    y: 0.0
+    z: -0.114
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    type: "gnss"
+    frequency: 5    
+    simulate: true
+  imu_link:
+    x: -1.595
+    y: 0.0
+    z: -1.03
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0 
+    type: "imu"
+    frequency: 100
+    noise_stddev: 0.0
+    simulate: true        
+  traffic_light_right_camera/camera_link:
+    x: 0.05
+    y: -0.0175
+    z: -0.1
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  traffic_light_left_camera/camera_link:
+    x: 0.05
+    y: 0.0175
+    z: -0.1
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  lidar_top/airy_sensor:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    range: 30                       # 30m@10%
+    channels: 96                    # channels equivalent to beams
+    points_per_second: 860000       # singel return mode
+    # points_per_second: 1720000     # dual return mode
+    upper_fov: 90                   # upper field of view in degrees
+    lower_fov: 0                    # lower field of view in degrees
+    lower_fov: 0
+    rotation_frequency: 10
+    noise_stddev: 0.0    
+    type: "lidar"
+    simulate: true
+ 
+
+sensor_mount_rear_axis:
+  x: 0.0
+  y: 0.0
+  z: 0.33
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0.0
+  gnss_left:
+    x: 0.955
+    y: 0.43
+    z: 1.141
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    type: "gnss"
+    simulate: false
+  gnss_right:
+    x: 0.955
+    y: -0.43
+    z: 1.141
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    type: "gnss"
+    simulate: false
+
+
+
+sensor_mount_front:
+  x: 3.75
+  y: 0.0
+  z: 0.33
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0.0

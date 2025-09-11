@@ -1,42 +1,42 @@
 <?xml version="1.0"?>
 
-<robot name="gazebo_ouster" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="gazebo_lidar_robosense" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="gazebo_ouster" params="lidar_suffix
+  <xacro:macro name="gazebo_lidar_robosense" params="lidar_suffix
                                             calibration_parent:=sensor_kit_base_link
                                             robot_name">
-    <!-- Crate local variables -->
+    <!-- Create local variables -->
     <xacro:property name="M_PI" value="3.14159"/>
     <xacro:property name="lidar_name" value="lidar_${lidar_suffix}"/>
     <xacro:property name="parent" value="${calibration_parent}"/>
 
-   <!-- Include Sensor Calibration -->
-   <xacro:property name="calibration" value="${xacro.load_yaml('$(find go2_description)/xacro/sensor_kit_calibration.yaml')}"/> 
+    <!-- Include Sensor Calibration -->
+    <xacro:property name="calibration" value="${xacro.load_yaml('$(find go2_description)/xacro/sensor_kit_calibration.yaml')}"/> 
 
     <!-- Sensor Gazebo Lidar -->
     <!-- Note: Using dict.get('key', 'default-value') to use a default-value in case the key in the dict is missing -->
     <!-- Note2: Gazebo-lidar-plugin is only loaded if "simulate" in the yaml-configuration is set to true -->
-    <xacro:if value="${calibration[parent][lidar_name+'/os_sensor']['simulate']}">
+    <xacro:if value="${calibration[parent][lidar_name+'/airy_sensor']['simulate']}">
       <xacro:property name="lidar_range"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('range', 50.0)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('range', 50.0)}"/>
       <xacro:property name="channels"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('channels', 32)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('channels', 32)}"/>
       <xacro:property name="points_per_second"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('points_per_second', 32000)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('points_per_second', 32000)}"/>
       <xacro:property name="upper_fov"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('upper_fov', 22.5)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('upper_fov', 22.5)}"/>
       <xacro:property name="lower_fov"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('lower_fov', -22.5)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('lower_fov', -22.5)}"/>
       <xacro:property name="frequency"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('rotation_frequency', 10)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('rotation_frequency', 10)}"/>
       <xacro:property name="noise_stddev"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('noise_stddev', 0.0)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('noise_stddev', 0.0)}"/>
       <xacro:property name="gz_topic"
-                      value="${calibration[parent][lidar_name+'/os_sensor'].get('topic', '/sensing/lidar/'+lidar_suffix)}"/>
+                      value="${calibration[parent][lidar_name+'/airy_sensor'].get('topic', '/sensing/lidar/'+lidar_suffix)}"/>
 
       <gazebo reference="laser_frame">
-      <!-- <gazebo reference="${lidar_name}/os_lidar"> -->
-        <sensor type="gpu_lidar" name="${lidar_name}/os_lidar">
+      <!--<gazebo reference="${lidar_name}/robosense_airy_lidar"> -->
+        <sensor type="gpu_lidar" name="${lidar_name}/robosense_airy_lidar">
           <pose>0 0 0 0 0 0</pose>
           <visualize>true</visualize>
           <update_rate>${frequency}</update_rate>
@@ -49,7 +49,7 @@
           <ignition_frame_id>${lidar_name}/os_lidar</ignition_frame_id>
           <gazebo_frame_id>${lidar_name}/os_lidar</gazebo_frame_id>
           <frame_id>${lidar_name}/os_lidar</frame_id> -->
-          
+
           <lidar>
             <scan>
               <vertical>

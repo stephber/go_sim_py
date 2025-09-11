@@ -110,11 +110,13 @@
             </sensor>
         </gazebo>
 
+
+        <!-- uncomment to add default lidar to the robot in gazebo -->
+        <!--
         <gazebo reference="laser_frame">
-            <!--<material>Gazebo/Black</material>-->
+            <material>Gazebo/Black</material>
 
             <sensor name="laser" type="gpu_lidar">
-            <!--<sensor name="laser" type="ray">-->
                 <pose> 0 0 0 0 0 0 </pose>
                 <visualize>true</visualize>
                 <update_rate>10</update_rate>
@@ -137,7 +139,7 @@
             </sensor>
 
         </gazebo>
-
+        -->
         <gazebo reference="camera_face">
             <!-- <material>Gazebo/Black</material> -->
 
